@@ -1,126 +1,682 @@
-        Title="Курс" Height="720" Width="1200" Background="#FFF">
-
-
-    <Window.DataContext>
-        <local:MainViewModel />
-    </Window.DataContext>
-
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="56" /> <!-- Top toolbar -->
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-
-        <!-- Top toolbar -->
-        <Border Grid.Row="0" Background="#F3F3F3" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
-            <DockPanel VerticalAlignment="Center" LastChildFill="True" Margin="8,0">
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left" VerticalAlignment="Center" Spacing="12">
-                    <Button Command="{Binding BackCommand}" Padding="8" MinWidth="80">← Назад</Button>
-                    <Button Command="{Binding ForwardCommand}" Padding="8" MinWidth="80">→ Вперед</Button>
-                    <Button Command="{Binding SearchCommand}" Padding="8" MinWidth="80">🔍 Поиск</Button>
-                    <Button Command="{Binding ToggleBookmarkCommand}" Padding="8" MinWidth="100">Закладка</Button>
-                </StackPanel>
-
-
-                <TextBlock Text="{Binding WindowTitle}" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
-                    <!-- standard Win buttons are shown by window chrome; here placeholders if needed -->
-                </StackPanel>
-            </DockPanel>
-        </Border>
-
-
-        <!-- Main area -->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="320" />
-                <ColumnDefinition Width="8" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-
-            <!-- Left navigation pane -->
-            <Border Grid.Column="0" Background="#FBFBFB" BorderBrush="#E6E6E6" BorderThickness="0,0,1,0">
-                <StackPanel Margin="16">
-                    <TextBlock Text="Курс" FontSize="20" FontWeight="Bold" Margin="4" />
-
-
-                    <!-- Главная (с иконкой) -->
-                    <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Command="{Binding GoHomeCommand}" HorizontalContentAlignment="Left" Padding="8" Margin="0,8,0,0">
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <TextBlock Text="🏠" FontSize="16" />
-                            <TextBlock Text="Главная" FontSize="16" />
-                        </StackPanel>
-                    </Button>
-
-
-                    <!-- Список курса: курс, введение, темы, тесты -->
-                    <ListBox ItemsSource="{Binding NavigationItems}" SelectedItem="{Binding SelectedNavItem, Mode=TwoWay}" BorderThickness="0" Margin="0,12,0,0">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Title}" FontSize="18" Padding="8" />
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
-            </Border>
-
-
-            <!-- Splitter column -->
-            <GridSplitter Grid.Column="1" Width="8" HorizontalAlignment="Stretch" Background="Transparent" ShowsPreview="True"/>
-
-
-            <!-- Content area -->
-            <ScrollViewer Grid.Column="2" Padding="28">
-                <StackPanel>
-                    <TextBlock Text="{Binding CurrentContentTitle}" FontSize="48" FontWeight="Bold" Margin="0,0,0,24" />
-                    <TextBlock Text="{Binding CurrentSectionHeader}" FontSize="28" FontWeight="SemiBold" Margin="0,0,0,20" />
-                    <TextBlock Text="{Binding CurrentContentText}" TextWrapping="Wrap" FontSize="18" />
-                </StackPanel>
-            </ScrollViewer>
-        </Grid>
-
-
-    </Grid>
-</Window>
-*/
-
-
-// ======= MainWindow.xaml.cs =======
-// Сохраните как MainWindow.xaml.cs
-
-
-using System.Windows;
-
-
-namespace EbookApp
 {
-    public partial class MainWindow : Window
+  "name": "АрхРеестр. Поиск недвижимости",
+  "type": "DOCUMENT",
+  "children": [
     {
-        public MainWindow()
+      "type": "PAGE",
+      "name": "Design Guide",
+      "children": [
         {
-            InitializeComponent();
+          "type": "FRAME",
+          "name": "Palette & Logos",
+          "absoluteBoundingBox": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 400
+          },
+          "children": [
+            {
+              "type": "RECTANGLE",
+              "name": "Color #0B75A1",
+              "absoluteBoundingBox": {
+                "x": 20,
+                "y": 20,
+                "width": 200,
+                "height": 80
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.043137254901960784,
+                    "g": 0.4588235294117647,
+                    "b": 0.6313725490196078
+                  }
+                }
+              ]
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Color #26C6DA",
+              "absoluteBoundingBox": {
+                "x": 240,
+                "y": 20,
+                "width": 200,
+                "height": 80
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.14901960784313725,
+                    "g": 0.7764705882352941,
+                    "b": 0.8549019607843137
+                  }
+                }
+              ]
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Color #D32B2B",
+              "absoluteBoundingBox": {
+                "x": 460,
+                "y": 20,
+                "width": 200,
+                "height": 80
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.8274509803921568,
+                    "g": 0.16862745098039217,
+                    "b": 0.16862745098039217
+                  }
+                }
+              ]
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Color #F4F7F9",
+              "absoluteBoundingBox": {
+                "x": 680,
+                "y": 20,
+                "width": 200,
+                "height": 80
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.9568627450980393,
+                    "g": 0.9686274509803922,
+                    "b": 0.9764705882352941
+                  }
+                }
+              ]
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Color #1F2D3D",
+              "absoluteBoundingBox": {
+                "x": 900,
+                "y": 20,
+                "width": 200,
+                "height": 80
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.12156862745098039,
+                    "g": 0.17647058823529413,
+                    "b": 0.23921568627450981
+                  }
+                }
+              ]
+            },
+            {
+              "type": "TEXT",
+              "name": "Logo (цветной)",
+              "characters": "АрхРеестр",
+              "absoluteBoundingBox": {
+                "x": 20,
+                "y": 120,
+                "width": 300,
+                "height": 80
+              },
+              "style": {
+                "fontFamily": "Inter",
+                "fontSize": 36,
+                "fontWeight": 700
+              }
+            },
+            {
+              "type": "TEXT",
+              "name": "Logo (инвертированный)",
+              "characters": "АРХРЕЕСТР",
+              "absoluteBoundingBox": {
+                "x": 350,
+                "y": 120,
+                "width": 300,
+                "height": 80
+              },
+              "style": {
+                "fontFamily": "Inter",
+                "fontSize": 36,
+                "fontWeight": 700
+              }
+            }
+          ]
+        },
+        {
+          "type": "FRAME",
+          "name": "Typography & Components",
+          "absoluteBoundingBox": {
+            "x": 0,
+            "y": 420,
+            "width": 1440,
+            "height": 600
+          },
+          "children": [
+            {
+              "type": "TEXT",
+              "name": "H1",
+              "characters": "Заголовок H1 — 32pt Inter",
+              "absoluteBoundingBox": {
+                "x": 20,
+                "y": 440,
+                "width": 600,
+                "height": 40
+              },
+              "style": {
+                "fontFamily": "Inter",
+                "fontSize": 32,
+                "fontWeight": 700
+              }
+            },
+            {
+              "type": "TEXT",
+              "name": "Body",
+              "characters": "Обычный текст — Roboto 16pt. Пример: Введите район, цену, площадь и т.д.",
+              "absoluteBoundingBox": {
+                "x": 20,
+                "y": 490,
+                "width": 900,
+                "height": 40
+              },
+              "style": {
+                "fontFamily": "Roboto",
+                "fontSize": 16,
+                "fontWeight": 400
+              }
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Primary Button",
+              "absoluteBoundingBox": {
+                "x": 20,
+                "y": 540,
+                "width": 160,
+                "height": 44
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.043137254901960784,
+                    "g": 0.4588235294117647,
+                    "b": 0.6313725490196078
+                  }
+                }
+              ]
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Secondary Button",
+              "absoluteBoundingBox": {
+                "x": 200,
+                "y": 540,
+                "width": 160,
+                "height": 44
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.14901960784313725,
+                    "g": 0.7764705882352941,
+                    "b": 0.8549019607843137
+                  }
+                }
+              ]
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Input Field",
+              "absoluteBoundingBox": {
+                "x": 380,
+                "y": 540,
+                "width": 360,
+                "height": 44
+              },
+              "strokes": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.12156862745098039,
+                    "g": 0.17647058823529413,
+                    "b": 0.23921568627450981
+                  }
+                }
+              ]
+            }
+          ]
         }
-    }
-}
-
-
-
-Готово — я положил весь пример кода (WPF + XAML + ViewModel + заглушка API и модели) в текстовый документ на холсте.
-Открой документ «Wpf Ebook Interface» (он появился рядом с беседой) — там есть пошаговые комментарии, XAML и все файлы, которые можно скопировать в проект.
-
-Если хочешь, могу:
-
-подготовить zip с проектом (.sln/.csproj) и отправить ссылку для скачивания;
-
-добавить экран редактирования тестов и вопросов;
-
-присоединить реальную реализацию вызовов API под конкретный URL и DTO.
-
-Что делаем дальше?
-
-Ch
+      ]
+    },
+    {
+      "type": "PAGE",
+      "name": "Desktop (1440×900)",
+      "children": [
+        {
+          "type": "FRAME",
+          "name": "Авторизация / Регистрация",
+          "absoluteBoundingBox": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900
+          },
+          "children": [
+            {
+              "type": "RECTANGLE",
+              "name": "Header",
+              "absoluteBoundingBox": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 72
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.9568627450980393,
+                    "g": 0.9686274509803922,
+                    "b": 0.9764705882352941
+                  }
+                }
+              ]
+            },
+            {
+              "type": "TEXT",
+              "name": "Logo",
+              "characters": "АрхРеестр",
+              "absoluteBoundingBox": {
+                "x": 24,
+                "y": 18,
+                "width": 200,
+                "height": 36
+              },
+              "style": {
+                "fontFamily": "Inter",
+                "fontSize": 20,
+                "fontWeight": 700
+              }
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Main container",
+              "absoluteBoundingBox": {
+                "x": 24,
+                "y": 96,
+                "width": 1392,
+                "height": 768
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 1,
+                    "g": 1,
+                    "b": 1
+                  }
+                }
+              ]
+            },
+            {
+              "type": "FRAME",
+              "name": "Auth Card",
+              "absoluteBoundingBox": {
+                "x": 520,
+                "y": 200,
+                "width": 400,
+                "height": 360
+              },
+              "children": [
+                {
+                  "type": "TEXT",
+                  "name": "Title",
+                  "characters": "Вход в АрхРеестр",
+                  "absoluteBoundingBox": {
+                    "x": 540,
+                    "y": 220,
+                    "width": 360,
+                    "height": 28
+                  },
+                  "style": {
+                    "fontFamily": "Inter",
+                    "fontSize": 20,
+                    "fontWeight": 700
+                  }
+                },
+                {
+                  "type": "RECTANGLE",
+                  "name": "Email Input",
+                  "absoluteBoundingBox": {
+                    "x": 540,
+                    "y": 260,
+                    "width": 360,
+                    "height": 44
+                  }
+                },
+                {
+                  "type": "RECTANGLE",
+                  "name": "Password Input",
+                  "absoluteBoundingBox": {
+                    "x": 540,
+                    "y": 314,
+                    "width": 360,
+                    "height": 44
+                  }
+                },
+                {
+                  "type": "RECTANGLE",
+                  "name": "Login Button",
+                  "absoluteBoundingBox": {
+                    "x": 540,
+                    "y": 372,
+                    "width": 360,
+                    "height": 44
+                  },
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.043137254901960784,
+                        "g": 0.4588235294117647,
+                        "b": 0.6313725490196078
+                      }
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "TEXT",
+                      "name": "LoginLabel",
+                      "characters": "Войти"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "FRAME",
+          "name": "Главная (Поиск + Фильтры)",
+          "absoluteBoundingBox": {
+            "x": 0,
+            "y": 920,
+            "width": 1440,
+            "height": 900
+          },
+          "children": [
+            {
+              "type": "RECTANGLE",
+              "name": "Header",
+              "absoluteBoundingBox": {
+                "x": 0,
+                "y": 0,
+                "width": 1440,
+                "height": 72
+              },
+              "fills": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.9568627450980393,
+                    "g": 0.9686274509803922,
+                    "b": 0.9764705882352941
+                  }
+                }
+              ]
+            },
+            {
+              "type": "TEXT",
+              "name": "Logo",
+              "characters": "АрхРеестр",
+              "absoluteBoundingBox": {
+                "x": 24,
+                "y": 18,
+                "width": 200,
+                "height": 36
+              }
+            },
+            {
+              "type": "RECTANGLE",
+              "name": "Search bar",
+              "absoluteBoundingBox": {
+                "x": 48,
+                "y": 120,
+                "width": 800,
+                "height": 48
+              },
+              "strokes": [
+                {
+                  "type": "SOLID",
+                  "color": {
+                    "r": 0.12156862745098039,
+                    "g": 0.17647058823529413,
+                    "b": 0.23921568627450981
+                  }
+                }
+              ]
+            },
+            {
+              "type": "FRAME",
+              "name": "Filters",
+              "absoluteBoundingBox": {
+                "x": 48,
+                "y": 180,
+                "width": 320,
+                "height": 600
+              },
+              "children": [
+                {
+                  "type": "TEXT",
+                  "name": "Filter title",
+                  "characters": "Фильтры",
+                  "absoluteBoundingBox": {
+                    "x": 56,
+                    "y": 188,
+                    "width": 120,
+                    "height": 28
+                  },
+                  "style": {
+                    "fontFamily": "Inter",
+                    "fontSize": 18,
+                    "fontWeight": 600
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "name": "Район",
+                  "characters": "Район",
+                  "absoluteBoundingBox": {
+                    "x": 56,
+                    "y": 220,
+                    "width": 200,
+                    "height": 20
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "name": "Тип жилья",
+                  "characters": "Тип жилья",
+                  "absoluteBoundingBox": {
+                    "x": 56,
+                    "y": 260,
+                    "width": 200,
+                    "height": 20
+                  }
+                },
+                {
+                  "type": "TEXT",
+                  "name": "Цена",
+                  "characters": "Цена от — до",
+                  "absoluteBoundingBox": {
+                    "x": 56,
+                    "y": 300,
+                    "width": 200,
+                    "height": 20
+                  }
+                },
+                {
+                  "type": "RECTANGLE",
+                  "name": "Apply filters",
+                  "absoluteBoundingBox": {
+                    "x": 56,
+                    "y": 520,
+                    "width": 200,
+                    "height": 44
+                  },
+                  "fills": [
+                    {
+                      "type": "SOLID",
+                      "color": {
+                        "r": 0.043137254901960784,
+                        "g": 0.4588235294117647,
+                        "b": 0.6313725490196078
+                      }
+                    }
+                  ],
+                  "children": [
+                    {
+                      "type": "TEXT",
+                      "name": "ApplyLabel",
+                      "characters": "Показать"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "FRAME",
+              "name": "Results",
+              "absoluteBoundingBox": {
+                "x": 400,
+                "y": 180,
+                "width": 1032,
+                "height": 600
+              },
+              "children": [
+                {
+                  "type": "FRAME",
+                  "name": "Card 1",
+                  "absoluteBoundingBox": {
+                    "x": 410,
+                    "y": 200,
+                    "width": 1000,
+                    "height": 170
+                  },
+                  "children": [
+                    {
+                      "type": "RECTANGLE",
+                      "name": "Photo",
+                      "absoluteBoundingBox": {
+                        "x": 410,
+                        "y": 200,
+                        "width": 240,
+                        "height": 160
+                      },
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {
+                            "r": 0.9,
+                            "g": 0.9,
+                            "b": 0.9
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "TEXT",
+                      "name": "Title",
+                      "characters": "Квартира 1 — 2 комнаты, 50 м²",
+                      "absoluteBoundingBox": {
+                        "x": 660,
+                        "y": 200,
+                        "width": 520,
+                        "height": 28
+                      },
+                      "style": {
+                        "fontFamily": "Inter",
+                        "fontSize": 18,
+                        "fontWeight": 600
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "name": "Price",
+                      "characters": "Цена: 3000000 ₽",
+                      "absoluteBoundingBox": {
+                        "x": 660,
+                        "y": 236,
+                        "width": 200,
+                        "height": 22
+                      },
+                      "style": {
+                        "fontFamily": "Roboto",
+                        "fontSize": 16
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "FRAME",
+                  "name": "Card 2",
+                  "absoluteBoundingBox": {
+                    "x": 410,
+                    "y": 390,
+                    "width": 1000,
+                    "height": 170
+                  },
+                  "children": [
+                    {
+                      "type": "RECTANGLE",
+                      "name": "Photo",
+                      "absoluteBoundingBox": {
+                        "x": 410,
+                        "y": 390,
+                        "width": 240,
+                        "height": 160
+                      },
+                      "fills": [
+                        {
+                          "type": "SOLID",
+                          "color": {
+                            "r": 0.9,
+                            "g": 0.9,
+                            "b": 0.9
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "TEXT",
+                      "name": "Title",
+                      "characters": "Квартира 2 — 3 комнаты, 55 м²",
+                      "absoluteBoundingBox": {
+                        "x": 660,
+                        "y": 390,
+                        "width": 520,
+                        "height": 28
+                      },
+                      "style": {
+                        "fontFamily": "Inter",
+                        "fontSize": 18,
+                        "fontWeight": 600
+                      }
+                    },
+                    {
+                      "type": "TEXT",
+                      "name": "Price",
+                      "characters": "Цена: 3500000 ₽",
+                      "absoluteBoundingBox": {
+                        "x": 660,
+                        "y": 426,
+                        "width": 200,
+                        "
